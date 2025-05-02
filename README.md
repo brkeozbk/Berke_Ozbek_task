@@ -1,4 +1,7 @@
 Tüm kodlar js dosyası içerisindedir.
 index dosyası projeyi live da test etme amaçlı açılmıştır
-![image](https://github.com/user-attachments/assets/7d9c6218-a9c3-46aa-8413-6347b2c90f46)
+
 Proje görünümü görseldeki gibidir
+
+![image](https://github.com/user-attachments/assets/f6c26c88-adbb-49c9-8a87-b6afc3cfaf7a)
+

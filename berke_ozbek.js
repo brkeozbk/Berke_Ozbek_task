@@ -263,7 +263,12 @@ font-family: Quicksand-Bold;
   
 
 }
-
+.arrow-left::before {
+  transform: rotate(-135deg);
+}
+  .arrow-right::before {
+  transform: rotate(45deg);
+}
 .arrow-button:hover {
   background-color: #fff;
 }

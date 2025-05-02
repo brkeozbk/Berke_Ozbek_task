@@ -86,6 +86,7 @@ font-family: Quicksand-Bold;
 }
   .carousel_items {
   display: flex;
+  width: 100%;
   gap: 30px;
   padding: 20px 0;
   

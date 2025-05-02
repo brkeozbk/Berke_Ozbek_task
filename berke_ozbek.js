@@ -430,7 +430,7 @@ $('.carousel_track_container').on('mouseleave', function () {
         
         
 $(document).on('click', '.heart-icon', function (e) {
-  e.stopPropagation(); // Burada linkin açılmasını engelle
+  e.stopPropagation(); 
   const id = $(this).data('id');
   const svg = $(this).find('svg');
   let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -446,13 +446,13 @@ $(document).on('click', '.heart-icon', function (e) {
   localStorage.setItem('favorites', JSON.stringify(favorites));
 });
 
-// Ürün üzerine tıklama
+
 $(document).on('click', '.carousel_item', function (e) {
-  // Eğer kalp simgesine tıklanmadıysa
+
   if (!$(e.target).closest('.heart-icon').length) {
     e.preventDefault();
-    const productLink = $(this).data('url'); // URL'yi al
-    window.open(productLink, '_blank'); // Yeni sekme aç
+    const productLink = $(this).data('url'); 
+    window.open(productLink, '_blank'); 
   }
 });
         

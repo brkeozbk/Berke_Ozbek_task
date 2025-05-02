@@ -197,6 +197,7 @@ font-family: Quicksand-Bold;
       margin-top: 30px;
         display: flex;
   flex-direction: column;
+  min-height: 60px;
 }
 .original-price {
   text-decoration: none; 
@@ -381,15 +382,15 @@ opacity: 0.6;
 
       const setEvents = () => {
         $('.arrow-left').on('click', () => {
-          $('.carousel_track_container').scrollLeft(function (i, val) {
-            return val - 300;
-          });
+          $('.carousel_track_container').stop().animate({
+            scrollLeft: $('.carousel_track_container').scrollLeft() - 300
+          }, 500); 
         });
-  
+      
         $('.arrow-right').on('click', () => {
-          $('.carousel_track_container').scrollLeft(function (i, val) {
-            return val + 300;
-          });
+          $('.carousel_track_container').stop().animate({
+            scrollLeft: $('.carousel_track_container').scrollLeft() + 300
+          }, 500);
         });
 // mouse ile sürükleyerke kaydırma işlemi yani drag to scroll
 //ama ürüne basıp kaydırma yapınca ürünün olduğu sayfaya atıyor

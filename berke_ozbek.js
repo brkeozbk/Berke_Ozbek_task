@@ -20,7 +20,7 @@ $(document).ready(() => {
       <div class="carousel_items">
         <div class="carousel_item">
           <div class="product-image">
-            <img src="https://via.placeholder.com/200" alt="Ürün Resmi">
+            <img src="">
           </div>
           <div class="product-info">
             <div class="product-title">
@@ -255,9 +255,7 @@ font-family: Quicksand-Bold;
   height: 40px;
   cursor: pointer;
   color: #f28e00;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   z-index: 10;
   
 
 }
@@ -267,11 +265,11 @@ font-family: Quicksand-Bold;
 }
 
 .arrow-left {
-  left: 10px;
+  left: -50px;
 }
 
 .arrow-right {
-  right: 10px;
+  right: -50px;
 }
 
 .arrow-button::before {
@@ -283,13 +281,13 @@ font-family: Quicksand-Bold;
   border-right: 2px solid #f28e00;;
 }
 .product-title span {
-  font-family: Arial, sans-serif;  /* Arial veya sans-serif tercih edilir */
+  font-family: Arial, sans-serif;  
 line-height: 1.4;  
 color: #555555;
 opacity: 0.7;
 }
 .product-title b {
-  font-family: Arial, sans-serif;  /* Arial veya sans-serif tercih edilir */
+  font-family: Arial, sans-serif;  
 line-height: 1.4;  
 
 opacity: 0.6;

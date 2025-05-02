@@ -150,28 +150,30 @@ font-family: Quicksand-Bold;
   right: 10px;
   cursor: pointer;
   z-index: 10;
-  width: 30px;
-  height: 30px;
+  padding: 4px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease;
+  transition: transform 0.2s ease;
+}
+  .heart-svg.filled {
+  fill: #f28e00;
+}
+  .heart-icon svg {
+  transition: fill 0.3s ease;
+}
+  .heart-icon svg path {
+  fill: none;  /* Başlangıçta kalp boş olacak */
 }
 
-.heart-svg {
-  fill: white;             
-  stroke: #f28e00;          
-  stroke-width: 2;
-  transition: stroke 0.3s ease;
+.heart-icon svg.filled path {
+  fill: #f28e00; /* Dolu kalp için renk */
 }
 
 .heart-icon:hover {
-  background-color: #fff0e0;   
+  transform: scale(1.1);
 }
 
-.heart-icon:hover .heart-svg {
-  stroke: #ff6600;             
+.heart-icon svg:hover path {
+  stroke: #ff4c4c; /* hover'da rengi değiştir */
 }
 .product-info {
   margin-top: auto;
@@ -327,7 +329,7 @@ opacity: 0.6;
         
 
         $.getJSON('https://gist.githubusercontent.com/sevindi/8bcbde9f02c1d4abe112809c974e1f49/raw/9bf93b58df623a9b16f1db721cd0a7a539296cf0/products.json', data => {
-            
+          const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
             const itemsHTML = data.map(product =>{
                 const originalPrice = parseFloat(product.original_price);
             const price = parseFloat(product.price);
@@ -341,10 +343,10 @@ opacity: 0.6;
             }
             
                  return `
-              <div class="carousel_item" onclick="window.location.href='${product.url}'">
+              <div class="carousel_item" data-url="${product.url}">
                 <div class="product-image">
-                <div class="heart-icon">
-  <svg viewBox="0 0 24 24" width="30" height="30" class="heart-svg">
+                <div class="heart-icon" data-id="${product.id}">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f28e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5l3.3 3.3L12 20l5.5-6.6 3.3-3.3c1.5-1.5 1.5-4 0-5.5z"/>
   </svg>
 </div>
@@ -377,6 +379,9 @@ opacity: 0.6;
               </div>
             `}).join('');
             $('.carousel_items').html(itemsHTML);
+            favorites.forEach(favId => {
+              $(`.heart-icon[data-id="${favId}"] svg`).addClass('filled');
+            });
           });
       };
 
@@ -424,6 +429,32 @@ $('.carousel_track_container').on('mouseleave', function () {
 });
         
         
+$(document).on('click', '.heart-icon', function (e) {
+  e.stopPropagation(); // Burada linkin açılmasını engelle
+  const id = $(this).data('id');
+  const svg = $(this).find('svg');
+  let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(favId => favId !== id);
+    svg.removeClass('filled');
+  } else {
+    favorites.push(id);
+    svg.addClass('filled');
+  }
+
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+});
+
+// Ürün üzerine tıklama
+$(document).on('click', '.carousel_item', function (e) {
+  // Eğer kalp simgesine tıklanmadıysa
+  if (!$(e.target).closest('.heart-icon').length) {
+    e.preventDefault();
+    const productLink = $(this).data('url'); // URL'yi al
+    window.open(productLink, '_blank'); // Yeni sekme aç
+  }
+});
         
 
 

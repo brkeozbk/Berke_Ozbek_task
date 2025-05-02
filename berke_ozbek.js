@@ -86,14 +86,14 @@ font-family: Quicksand-Bold;
 }
   .carousel_items {
   display: flex;
-  gap: 10px;
+  gap: 30px;
   padding: 20px 0;
   
   
 }
   .carousel_item {
-  min-width: calc(100% / 5 - 35px); 
-  max-width: calc(100% / 5 - 35px);
+  min-width: calc(100% / 5 - 50px); 
+  max-width: calc(100% / 5 - 50px);
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
